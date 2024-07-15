@@ -1,13 +1,23 @@
-user_bench = {}
-print('Say STOP to end player addition.')
-while True:
-    user_input = input('List your current players seperated in this format: (FIRSTNAME, LASTNAME)')
-    if user_input != 'STOP':
-        user_bench[user_input] = ''
-    else:
-        break
+from Compilier import compileAll
 
+def collect_names():
+    names_list = {}
+    while True:
+        first_name = input("Enter your players First Name (or 'q' to quit): ")
+        if first_name.lower() == 'q':
+            break
+        last_name = input("Enter your players Last Name (or 'q' to quit): ")
+        if last_name.lower() == 'q':
+            break
+        names_list.append((first_name, last_name))
+        print('Now add your next player.')
+    return names_list
 
-print(user_bench)
+print(collect_names())
+#sorted_Dictionary = print(compileAll())
+sorted_Dictionary = {'Christian McCaffrey': 0, 'CeeDee Lamb': 1}
+
+for key in sorted_Dictionary:
+    if 
 
 

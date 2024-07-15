@@ -7,14 +7,7 @@ from tabulate import tabulate
 def compileAll():
     ffprosDict = scrape_ffpros_rankings()
     #print(ffprosDict)
-    ffprosDictTiny = {
-    'Christian McCaffrey': 'RB1', 
-    'CeeDee Lamb': 'WR1', 
-    'Tyreek Hill': 'WR2', 
-    'Amon-Ra St. Brown': 'WR3',
-    'Justin Jefferson': 'WR4', 
-    "Ja'Marr Chase": 'WR5'
-    }
+    
 
     i = 0
     for key in ffprosDict:
@@ -25,14 +18,7 @@ def compileAll():
 
     ###################
     footballguysDict = scrape_footballguys_rankings()
-    footballguysDictTiny = {
-    'Christian McCaffrey': 'RB1', 
-    'CeeDee Lamb': 'WR1', 
-    'Tyreek Hill': 'WR2', 
-    'Justin Jefferson': 'WR3', 
-    "Ja'Marr Chase": 'WR4', 
-    'Amon-Ra St. Brown': 'WR5',
-    }
+    
 
     j = 0
     for key in footballguysDict:
@@ -42,14 +28,6 @@ def compileAll():
 
     ###################
     pffDict = scrape_pff_rankings()
-    pffDictTiny = {
-        'Christian McCaffrey': 'RB1', 
-        'CeeDee Lamb': 'WR1', 
-        'Tyreek Hill': 'WR2', 
-        "Ja'Marr Chase": 'WR3', 
-        'Justin Jefferson': 'WR4', 
-        'Amon-Ra St. Brown': 'WR5',
-    }
 
     k = 0
     for key in pffDict:
@@ -71,16 +49,17 @@ def compileAll():
 
     sorted_dict = dict(sorted(CummulationDict.items(), key=lambda x: x[1]))
 
+    
     l = 0
     for key in sorted_dict:
         sorted_dict[key] = l
         l+=1
     #print(sorted_dict)
+    
+    return sorted_dict
 
-    df_players = pd.DataFrame(sorted_dict.keys(), columns=['Player'])
-
-    return tabulate(df_players, headers="firstrow", tablefmt='fancy_grid')
 
 if __name__ == "__main__":
-    compiledData = compileAll()
-    print(compiledData)
+    cData = compileAll()
+    df_players = pd.DataFrame(cData.keys(), columns=['Player'])
+    print(tabulate(df_players, headers="firstrow", tablefmt='fancy_grid'))

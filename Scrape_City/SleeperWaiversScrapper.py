@@ -1,48 +1,39 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 import time
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-def scrape_pff_rankings():
+def scrape_sleeper_waivers():
 
     driver = webdriver.Chrome()
 
-    driver.get('https://www.pff.com/news/fantasy-football-rankings-2024-ppr-top-400')
+    #link = input('https://sleeper.com/leagues/1088591425672929280/players')
+    input_id = input('Whats sleeper league id?')
 
-    wait = WebDriverWait(driver, 10)
-    wait.until(EC.visibility_of_element_located((By.XPATH, './/div[@class="g-table-wrapper"]/table/tbody/tr')))
+    driver.get('https://www.sleepercompanion.com/league/' + str(input_id) + '/rosters')
 
-    players_full = driver.find_elements(By.XPATH, './/div[@class="g-table-wrapper"]/table/tbody/tr')
+    EC.presence_of_element_located((By.XPATH, './/div[@class="cha-70qvj9"]'))
+    roster_elements = driver.find_elements(By.XPATH, './/div[@class="cha-70qvj9"]')
 
-    player_names = []
-    player_types = []
+    rostered_players = []
 
-    for row in players_full:
-        name_element = row.find_element(By.XPATH, './td[3]').text
-        type_element = row.find_element(By.XPATH, './td[5]').text
-        player_names.append(name_element)
-        player_types.append(type_element)
-        
+    players_on_roster = driver.find_elements(By.XPATH, './/p[@class="chakra-text cha-yfehv3"]')
+    for element in players_on_roster:
+        players_on_rosterd = players_on_roster.text
+        rostered_players.append(players_on_rosterd)
 
-    #print(player_names)
+    input('breaker')
+
+    print(rostered_players)
     #print(player_types)
 
     #input('breaker')
     # Close Driver
     driver.quit()
 
-    totalDictionary = {}
-    for key in player_names:
-        for value in player_types:
-            totalDictionary[key] = value
-            player_types.remove(value)
-            break
-
-    totalDictionary.pop('Name')
-
-    return totalDictionary 
 
 if __name__ == "__main__":
-    df = scrape_pff_rankings()
+    df = scrape_sleeper_waivers()
     print(df)

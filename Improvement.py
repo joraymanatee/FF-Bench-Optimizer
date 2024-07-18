@@ -1,6 +1,6 @@
 from Compilier import compileAll
-from Scrape_City.UserRosterScrape import scrape_team_roster
-from Scrape_City.SleeperWaiversScraper import scrape_sleeper_waivers
+from Scrape_City.SleeperScrape import scrape_team_roster
+from Scrape_City.SleeperScrape import scrape_sleeper_waivers
 
 sorted_Dictionary = compileAll()
 

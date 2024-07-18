@@ -1,8 +1,8 @@
 from Scrape_City.FootballGuys import scrape_footballguys_rankings
 from Scrape_City.PFFScrapper import scrape_pff_rankings
 from Scrape_City.FantasyFootballProsScrapper import scrape_ffpros_rankings
-import pandas as pd
 from tabulate import tabulate
+import pandas as pd
 
 def compileAll():
     ffprosDict = scrape_ffpros_rankings()

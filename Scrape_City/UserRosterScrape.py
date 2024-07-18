@@ -18,7 +18,6 @@ def scrape_team_names():
     EC.presence_of_element_located((By.XPATH, './/div[@class="cha-vxgrp0"]'))
     potential_team_names = driver.find_elements(By.XPATH, './/h2[@class="chakra-heading cha-tmg4cn"]')
     
-
     team_names_number = {}
 
     for name in potential_team_names:
@@ -31,11 +30,27 @@ def scrape_team_names():
 
     numbered_roster = team_names_number[input_username]
 
-    team_roster = driver.find_elements(By.XPATH, './/div[@class="chakra-stack cha-1htld2l"][' + str(numbered_roster) + ']')
+    team_roster_list = []
+    team_roster = driver.find_elements(By.XPATH, './/div[@class="cha-cn82tz"][' + str(numbered_roster) + ']//div[@class="chakra-stack cha-n21gh5"]//div[@class="cha-70qvj9"]/p[@class="chakra-text cha-yfehv3"]')
+    for row in team_roster:
+        players_text = row.text
+        team_roster_list.append(players_text)
+    
+    abbrev_to_name = {}
 
+    with open('nfl_teams.csv', mode='r', newline='') as file:
+            reader = csv.reader(file)
+            for row in reader:
+                abbrev_to_name[row[2]] = row[1]
+
+    for part in team_roster_list:
+        if part in abbrev_to_name.keys():
+            team_roster_list.remove(part)
+            team_roster_list.append(abbrev_to_name[part] + ' DST')
            
     driver.quit()
-    return team_roster
+    
+    return team_roster_list
 
 if __name__ == "__main__":
     df = scrape_team_names()

@@ -6,37 +6,25 @@ from tabulate import tabulate
 
 def compileAll():
     ffprosDict = scrape_ffpros_rankings()
-    #print(ffprosDict)
-    
 
     i = 0
     for key in ffprosDict:
         ffprosDict[key] = i
         i+=1
-    #print(ffprosDict)
 
-
-    ###################
     footballguysDict = scrape_footballguys_rankings()
     
-
     j = 0
     for key in footballguysDict:
         footballguysDict[key] = j
         j+=1
-    #print(footballguysDict)
 
-    ###################
     pffDict = scrape_pff_rankings()
 
     k = 0
     for key in pffDict:
         pffDict[key] = k
         k+=1
-    #print(pffDict)
-
-
-
 
     CummulationDict = {}
     for key in ffprosDict:
@@ -45,19 +33,14 @@ def compileAll():
         except:
             print("Error")
 
-    #print(CummulationDict)
-
     sorted_dict = dict(sorted(CummulationDict.items(), key=lambda x: x[1]))
-
-    
+ 
     l = 0
     for key in sorted_dict:
         sorted_dict[key] = l
         l+=1
-    #print(sorted_dict)
     
     return sorted_dict
-
 
 if __name__ == "__main__":
     cData = compileAll()

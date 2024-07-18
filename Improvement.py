@@ -1,23 +1,25 @@
 from Compilier import compileAll
+from Scrape_City.SleeperWaiversScraper import scrape_sleeper_waivers
 
-def collect_names():
-    names_list = {}
-    while True:
-        first_name = input("Enter your players First Name (or 'q' to quit): ")
-        if first_name.lower() == 'q':
-            break
-        last_name = input("Enter your players Last Name (or 'q' to quit): ")
-        if last_name.lower() == 'q':
-            break
-        names_list.append((first_name, last_name))
-        print('Now add your next player.')
-    return names_list
+sorted_Dictionary = compileAll()
+#sorted_Dictionary = {'Christian McCaffrey': 0, 'CeeDee Lamb': 1}
+non_rostered_sorted_Dictionary = {}
 
-print(collect_names())
-#sorted_Dictionary = print(compileAll())
-sorted_Dictionary = {'Christian McCaffrey': 0, 'CeeDee Lamb': 1}
+already_on_a_team = scrape_sleeper_waivers()
 
 for key in sorted_Dictionary:
-    if 
+    if key not in already_on_a_team:
+        non_rostered_sorted_Dictionary[key] = '0'
+
+#Temporary fix.
+non_rostered_sorted_Dictionary.pop('Travis Etienne Jr.')
+non_rostered_sorted_Dictionary.pop('Marvin Harrison Jr.')
+non_rostered_sorted_Dictionary.pop('Deebo Samuel Sr.')
+non_rostered_sorted_Dictionary.pop('Brian Thomas Jr.')
+
+for key in non_rostered_sorted_Dictionary:
+    non_rostered_sorted_Dictionary[key] = sorted_Dictionary[key]
+
+print(non_rostered_sorted_Dictionary)
 
 

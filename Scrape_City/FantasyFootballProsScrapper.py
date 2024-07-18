@@ -24,12 +24,6 @@ def scrape_ffpros_rankings():
         player_names.append(name_element)
         player_types.append(type_element)
         
-
-    #print(player_names)
-    #print(player_types)
-
-    #input('breaker')
-    # Close Driver
     driver.quit()
 
     totalDictionary = {}
@@ -40,7 +34,7 @@ def scrape_ffpros_rankings():
             break
     totalDict = {}
     for key, value in totalDictionary.items():
-        player_name = key.split(" (")[0]  # Split at " (" and take the part before it
+        player_name = key.split(" (")[0]  # Split at " (" and take the part before it.
         totalDict[player_name] = value
     return totalDict
 

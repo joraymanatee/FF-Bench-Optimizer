@@ -6,13 +6,11 @@ import csv
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-def scrape_team_names():
+def scrape_team_roster():
 
     driver = webdriver.Chrome()
-    #input_username = input('Whats your sleeper username?')
-    input_username = 'jackbernie'
-    #input_id = input('Whats sleeper league id?')
-    input_id = 1088591425672929280
+    input_username = input('Whats your sleeper username?')
+    input_id = input('Whats sleeper league id?')
 
     driver.get('https://www.sleepercompanion.com/league/' + str(input_id) + '/rosters')
     EC.presence_of_element_located((By.XPATH, './/div[@class="cha-vxgrp0"]'))
@@ -53,5 +51,5 @@ def scrape_team_names():
     return team_roster_list
 
 if __name__ == "__main__":
-    df = scrape_team_names()
+    df = scrape_team_roster()
     print(df)

@@ -31,7 +31,7 @@ def compileAll():
         try:
             CummulationDict[key] = (int(ffprosDict[key]) + int(footballguysDict[key]) + int(pffDict[key]))/3
         except:
-            print("Error")
+            pass
 
     sorted_dict = dict(sorted(CummulationDict.items(), key=lambda x: x[1]))
  

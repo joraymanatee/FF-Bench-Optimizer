@@ -11,7 +11,6 @@ def scrape_footballguys_rankings():
     wait = WebDriverWait(driver, 10)
     wait.until(EC.visibility_of_element_located((By.XPATH, '//div[@class="component-body"]/table/tbody')))
 
-    # Find all rows in the table body
     rows = driver.find_elements(By.XPATH, '//div[@class="component-body"]/table/tbody/tr')
 
     player_names = []
@@ -24,19 +23,13 @@ def scrape_footballguys_rankings():
             player_names.append(name_element)
             player_types.append(type_element)
         except Exception as e:
-            print('')
-
-    #print(player_names)
-    #print(player_types)
-    #input('Press Enter to continue...')
+            pass
 
     driver.quit()
 
     totalDictionary = {}
     for i in range(len(player_names)):
         totalDictionary[player_names[i]] = player_types[i]
-
-    #print(totalDictionary)
 
     return totalDictionary
 

@@ -10,7 +10,6 @@ def scrape_sleeper_waivers():
 
     driver = webdriver.Chrome()
     input_id = input('Whats sleeper league id?')
-    input_id = 1088591425672929280
 
     driver.get('https://www.sleepercompanion.com/league/' + str(input_id) + '/rosters')
     EC.presence_of_element_located((By.XPATH, './/div[@class="cha-vxgrp0"]'))

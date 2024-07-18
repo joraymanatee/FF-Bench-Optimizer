@@ -24,13 +24,7 @@ def scrape_pff_rankings():
         player_names.append(name_element)
         player_types.append(type_element)
         
-
-    #print(player_names)
-    #print(player_types)
-
-    #input('breaker')
-    # Close Driver
-    driver.quit()
+    driver.quit()  # Driver closer.
 
     totalDictionary = {}
     for key in player_names:

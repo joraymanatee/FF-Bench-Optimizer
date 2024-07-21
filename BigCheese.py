@@ -1,5 +1,16 @@
-from Improvement import availablePlayers, user_roster_rankings
+from ImprovementSleeper import availablePlayers, user_roster_rankings
 import os 
+
+
+fantasy_platform = input('What platform do you use for Fantasy?')
+
+if fantasy_platform == 'ESPN':
+    waiver_players = 
+    current_roster = 
+elif fantasy_platform == 'Sleeper':
+    waiver_players = 
+    current_roster = 
+    
 
 waiver_players = availablePlayers()
 current_roster = user_roster_rankings()

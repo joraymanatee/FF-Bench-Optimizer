@@ -5,19 +5,7 @@ from Scrape_City.ESPNScrape import scrape_espn_waivers
 sorted_Dictionary = compileAll()
 
 def availablePlayers_ESPN():
-    non_rostered_sorted_Dictionary = {}
-
-    already_on_a_team = scrape_espn_waivers()
-
-    for key in sorted_Dictionary:
-        if key not in already_on_a_team:
-            non_rostered_sorted_Dictionary[key] = '0'
-
-    #Temporary fix.
-    non_rostered_sorted_Dictionary.pop('Travis Etienne Jr.')
-    non_rostered_sorted_Dictionary.pop('Marvin Harrison Jr.')
-    non_rostered_sorted_Dictionary.pop('Deebo Samuel Sr.')
-    non_rostered_sorted_Dictionary.pop('Brian Thomas Jr.')
+    non_rostered_sorted_Dictionary = scrape_espn_waivers()
 
     for key in non_rostered_sorted_Dictionary:
         non_rostered_sorted_Dictionary[key] = sorted_Dictionary[key]

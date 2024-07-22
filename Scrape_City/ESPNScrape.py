@@ -21,21 +21,24 @@ def scrape_roster_espn():
             idx = idx_r
     team = league.teams[idx]
 
-    roster = team.roster
+    user_roster = []
 
-    user_roster = {}
+
+    print(team.roster)
     for player in team.roster:
-        end = len(str(player))
         string_player = str(player)
-        user_roster[(string_player[7: end - 1])] = '0'
+        string_player[end - 7: end - 3].replace('D/ST', 'DST')
+        print(string_player)
+        end = len(str(player))
+        user_roster.append(string_player[7: end - 1])
 
     return user_roster
 
 def scrape_espn_waivers():
-    free_agents = {}
+    free_agents = []
     for player in league.free_agents():
         string_player = str(player)
-        free_agents[(string_player[7: string_player.index(',')])] = '0'
+        free_agents.append(string_player[7: string_player.index(',')])
     return free_agents
 
 if __name__ == "__main__":

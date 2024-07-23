@@ -48,7 +48,7 @@ def scrape_team_roster():
     
     return team_roster_list
 
-def scrape_sleeper_waivers():
+def scrape_sleeper_players_rostered():
 
     driver = webdriver.Chrome()
 
@@ -79,6 +79,6 @@ def scrape_sleeper_waivers():
 
 if __name__ == "__main__":
     df = scrape_team_roster()
-    dg = scrape_sleeper_waivers()
+    dg = scrape_sleeper_players_rostered()
     print(df)
     print(dg)

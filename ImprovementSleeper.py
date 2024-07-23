@@ -1,13 +1,13 @@
 from Compilier import compileAll
 from Scrape_City.SleeperScrape import scrape_team_roster
-from Scrape_City.SleeperScrape import scrape_sleeper_waivers
+from Scrape_City.SleeperScrape import scrape_sleeper_players_rostered
 
 sorted_Dictionary = compileAll()
 
 def availablePlayers_sleeper():
     non_rostered_sorted_Dictionary = {}
 
-    already_on_a_team = scrape_sleeper_waivers()
+    already_on_a_team = scrape_sleeper_players_rostered()
 
     for key in sorted_Dictionary:
         if key not in already_on_a_team:

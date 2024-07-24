@@ -1,12 +1,16 @@
-from Scrape_City.SleeperScrape import availablePlayers, user_roster_rankings
-import os 
-
+import os  
 
 fantasy_platform = input('What platform do you use for Fantasy?')
-    
 
-waiver_players = availablePlayers()
-current_roster = user_roster_rankings()
+if fantasy_platform == 'Sleeper':
+    from Improvement_Sleeper import availablePlayers_Sleeper, user_roster_rankings_Sleeper
+    waiver_players = availablePlayers_Sleeper()
+    current_roster = user_roster_rankings_Sleeper()
+elif fantasy_platform == 'ESPN':
+    from Improvement_ESPN import availablePlayersESPN, user_roster_rankingsESPN
+    waiver_players = availablePlayersESPN()
+    current_roster = user_roster_rankingsESPN()
+    
 
 os.system('clear')
 

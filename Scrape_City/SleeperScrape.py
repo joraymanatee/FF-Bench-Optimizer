@@ -24,6 +24,7 @@ def scrape_team_roster():
         team_names_number[key] = j
         j+=1
 
+    print(team_names_number)
     numbered_roster = team_names_number[input_username]
 
     team_roster_list = []

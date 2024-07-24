@@ -1,10 +1,9 @@
 from Compilier import compileAll
-from Scrape_City.SleeperScrape import scrape_team_roster
-from Scrape_City.SleeperScrape import scrape_sleeper_players_rostered
+from Scrape_City.SleeperScrape import scrape_team_roster, scrape_sleeper_players_rostered
 
 sorted_Dictionary = compileAll()
 
-def availablePlayers():
+def availablePlayers_Sleeper():
     non_rostered_sorted_Dictionary = {}
 
     already_on_a_team = scrape_sleeper_players_rostered()
@@ -24,7 +23,7 @@ def availablePlayers():
 
     return non_rostered_sorted_Dictionary
 
-def user_roster_rankings():
+def user_roster_rankings_Sleeper():
     user_roster_sorted_Dictionary = {}
     on_team = scrape_team_roster()
 
@@ -35,8 +34,8 @@ def user_roster_rankings():
     return user_roster_sorted_Dictionary
 
 if __name__ == "__main__":
-    df = availablePlayers()
-    dg = user_roster_rankings()
+    df = availablePlayers_Sleeper()
+    dg = user_roster_rankings_Sleeper()
     print(df)
     print(dg)
 

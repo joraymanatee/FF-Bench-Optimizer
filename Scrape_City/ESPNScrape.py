@@ -7,6 +7,18 @@ league_id = input('What is your league ID?')
 
 league = League(league_id=league_id, year=datetime.now().year)
 
+
+def create_defense_Dictionary():
+    defenseDictionary = {}
+    with open('nfl_teams.csv', mode='r', newline='') as file:
+        reader = csv.reader(file)
+        next(file)
+        for row in reader:
+            team_column = row[1]
+            team_name = row[1].split(' ')
+            defenseDictionary[team_name[-1] + ' D/ST'] = row[1] + ' DST'
+    return defenseDictionary
+
 def scrape_roster_espn():
 
     team_names = [] 
@@ -22,33 +34,42 @@ def scrape_roster_espn():
             idx = idx_r
     team = league.teams[idx]
 
-    user_roster = []
+    players = team.roster
 
-    for player in team.roster:
-        string_player = str(player)
-        user_roster.append(string_player[7:string_player.index(')')])
-
-    return user_roster
-
-def scrape_espn_waivers():
-    free_agents = []
-    mascot_to_city = {}
-
-    with open('nfl_teams.csv', mode='r', newline='') as file:
-        reader = csv.reader(file)
-        for row in reader:
-            begin = row[1].index(' ')
-            mascot_to_city[row[1][begin:len(row[1])]] = row[0:begin]
-
-    print(mascot_to_city)
+    players_on_roster = []
+    for name in players:
+        players_on_roster.append(str(name)[7:len(str(name))-1])
     
+    defenseDictionary = create_defense_Dictionary()
+
+    for name in players_on_roster:
+        if name in defenseDictionary.keys():
+            players_on_roster.remove(name)
+            players_on_roster.append(defenseDictionary[name])
+    
+    return players_on_roster
+
+def espn_on_waivers():
+
+    defense_Dictionary_Two = create_defense_Dictionary()
+
+    free_agents = []
     for player in league.free_agents():
         string_player = str(player)
-        free_agents.append(string_player[7:string_player.index(',')])
+        if string_player[7: string_player.index(',')] not in defense_Dictionary_Two.keys():
+                free_agents.append(string_player[7: string_player.index(',')])
+        else:
+                free_agents.append(defense_Dictionary_Two[string_player[7: string_player.index(',')]])
+
     return free_agents
+
+  
+
+
+    
 
 if __name__ == "__main__":
     df = scrape_roster_espn()
-    dg = scrape_espn_waivers()
+    dg = espn_on_waivers()
     print(df)
     print(dg)

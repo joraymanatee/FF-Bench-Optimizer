@@ -23,6 +23,23 @@ for player in current_roster:
         del waiver_players[first_key]
 
 
+while True:
+    print('-------------------')
+    adjustments = input('Are you satisfied with these adjustments?')
+    
+    if adjustments == 'Yes':
+        break
+    elif adjustments == 'No':
+        for player in current_roster:
+            if current_roster[player] < min(waiver_players.values()):
+                pass
+            else:
+                first_key = next(iter(waiver_players))
+                print('There is a better player available, get rid of ' + player + ' for ' + first_key + '.')
+                del waiver_players[first_key]
+
+
+
 
 
                                     

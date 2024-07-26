@@ -27,11 +27,14 @@ def compileAll():
         k+=1
 
     CummulationDict = {}
+
     for key in ffprosDict:
         try:
             CummulationDict[key] = (int(ffprosDict[key]) + int(footballguysDict[key]) + int(pffDict[key]))/3
         except:
             pass
+
+    
 
     sorted_dict = dict(sorted(CummulationDict.items(), key=lambda x: x[1]))
  

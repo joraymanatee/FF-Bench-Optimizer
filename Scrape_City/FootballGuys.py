@@ -31,7 +31,12 @@ def scrape_footballguys_rankings():
     for i in range(len(player_names)):
         totalDictionary[player_names[i]] = player_types[i]
 
-    return totalDictionary
+    totalDictionaryReal = {}
+    for key, value in totalDictionary.items():
+        clean_key = key.replace(" Jr.", "").replace("Jr", "").replace(" Sr.", "").replace("Sr", "").replace("III", "").replace(" II", "")
+        totalDictionaryReal[clean_key] = value
+    return totalDictionaryReal
+
 
 if __name__ == "__main__":
     df = scrape_footballguys_rankings()

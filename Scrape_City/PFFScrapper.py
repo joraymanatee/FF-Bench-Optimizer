@@ -34,7 +34,11 @@ def scrape_pff_rankings():
 
     totalDictionary.pop('Name')
 
-    return totalDictionary 
+    totalDictionaryReal = {}
+    for key, value in totalDictionary.items():
+        clean_key = key.replace(" Jr.", "").replace("Jr", "").replace(" Sr.", "").replace("Sr", "").replace("III", "").replace(" II", "")
+        totalDictionaryReal[clean_key] = value
+    return totalDictionaryReal
 
 if __name__ == "__main__":
     df = scrape_pff_rankings()

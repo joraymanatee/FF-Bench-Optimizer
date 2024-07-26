@@ -12,12 +12,6 @@ def availablePlayers_Sleeper():
         if key not in already_on_a_team:
             non_rostered_sorted_Dictionary[key] = '0'
 
-    #Temporary fix.
-    non_rostered_sorted_Dictionary.pop('Travis Etienne Jr.')
-    non_rostered_sorted_Dictionary.pop('Marvin Harrison Jr.')
-    non_rostered_sorted_Dictionary.pop('Deebo Samuel Sr.')
-    non_rostered_sorted_Dictionary.pop('Brian Thomas Jr.')
-
     for key in non_rostered_sorted_Dictionary:
         non_rostered_sorted_Dictionary[key] = sorted_Dictionary[key]
 

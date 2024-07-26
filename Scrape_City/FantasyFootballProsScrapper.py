@@ -35,7 +35,12 @@ def scrape_ffpros_rankings():
     for key, value in totalDictionary.items():
         player_name = key.split(" (")[0]  # Split at " (" and take the part before it.
         totalDict[player_name] = value
-    return totalDict
+
+    totalDictionaryReal = {}
+    for key, value in totalDict.items():
+        clean_key = key.replace(" Jr.", "").replace("Jr", "").replace(" Sr.", "").replace("Sr", "").replace("III", "").replace(" II", "")
+        totalDictionaryReal[clean_key] = value
+    return totalDictionaryReal
 
 
 if __name__ == "__main__":

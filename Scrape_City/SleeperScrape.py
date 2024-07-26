@@ -76,6 +76,7 @@ def scrape_sleeper_players_rostered():
             rostered_players.append(abbrev_to_name[part] + ' DST')
            
     driver.quit()
+
     return rostered_players
 
 if __name__ == "__main__":
